@@ -14,5 +14,13 @@ describe('API', () => {
     res.should.have.status(200);
     res.should.be.json;
     res.body.should.have.property('message');
-  })
+  });
+
+  // GET INVALID ROUTE TEST
+  it('should respond with a json error message at /invalidpath GET', async () => {
+    const res = await chai.request(server).get(`/testing123`);
+    res.should.have.status(404);
+    res.should.be.json;
+    res.body.should.have.property('message');
+  });
 });
