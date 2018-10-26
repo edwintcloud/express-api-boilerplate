@@ -6,7 +6,7 @@ duration is also the expire time once a client has been limited
 */
 const opts = {
   points: 200, //  points
-  duration: 60 // Per 60 seconds
+  duration: 60 // Per 60 seconds, update if statement in errorHandler also!
 };
 
 const rateLimiter = new RateLimiterMemory(opts);
@@ -17,8 +17,6 @@ rateLimiter.consume(req.ip) // each request consumes 1 point
     next();
   })
   .catch(() => {
-    // TODO: add ip and time to database collection
-    console.log('\x1b[35m%s\x1b[0m',`[${new Date().toLocaleTimeString()}] ${req.ip} has been rate limited`);
     res.status(429);
     next(new Error(
       `You have made excessive requests to the server and have therefore ` +
