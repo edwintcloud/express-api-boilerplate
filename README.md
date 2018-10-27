@@ -1,4 +1,4 @@
-# express-api-boilerplate
+# express-api-boilerplate [![Build Status](https://travis-ci.com/edwintcloud/express-api-boilerplate.svg?branch=master)](https://travis-ci.com/edwintcloud/express-api-boilerplate)
 A boilerplate for an Express API backend with MongoDB and authentication.
 
 ## :wrench: Development Setup :wrench:
