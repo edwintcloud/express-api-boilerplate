@@ -129,21 +129,24 @@ router.put(`/users/update`, (req, res, next) => {
   for (var i in req.body) {
     if(!paths.includes(i)) {
       res.status(400);
+      console.log('bad path');
       return next(new Error(`Unable to update!`));
     }
   }
-  
+
   if(req.session.user) {
     user.findOneAndUpdate({ _id: req.session.user._id }, req.body, { new: true }).lean().then(user => {
       user.password = undefined;
       user.__v = undefined;
       res.json(user);
     }).catch(error => {
+      console.log('an error');
       res.status(400);
       next(new Error(error.message));
     });
   } else {
     res.status(400);
+    console.log('not logged in');
     next(new Error(`You must be logged in to do that!`));
   }
 });
